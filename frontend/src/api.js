@@ -6,4 +6,8 @@ const api = {
       res.json()
     );
   },
+
+  fetchRandomCats: () => {
+    return fetch(`${API_ENDPOINT}/api/cats/random50`).then((res) => res.json());
+  },
 };

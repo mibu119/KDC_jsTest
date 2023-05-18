@@ -46,9 +46,17 @@ body * {
 }
 
 .SearchInput {
-  width: 100%;
+  width: 80%;
   font-size: 40px;
   padding: 10px 15px;
+}
+
+.RandomButton {
+  width: 20%;
+  font-size: 40px;
+  background-color: white;
+  color: rgb(254, 187, 3);
+  cursor: pointer;
 }
 
 .ImageInfo {

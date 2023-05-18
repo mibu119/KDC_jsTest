@@ -16,6 +16,9 @@ class App {
       onSearch: (keyword) => {
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
       },
+      onRandomSearch: () => {
+        api.fetchRandomCats().then(({ data }) => this.setState(data));
+      },
     });
 
     this.searchResult = new SearchResult({
