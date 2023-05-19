@@ -20,14 +20,18 @@ class App {
       onSearch: (keyword) => {
         // 로딩 show
         this.Loading.show();
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        api.fetchCats(keyword).then(({ data }) => {
+          this.setState(data);
+          this.Loading.hide();
+        });
         // 로딩 hide
-        this.Loading.hide();
       },
       onRandomSearch: () => {
         this.Loading.show();
-        api.fetchRandomCats().then(({ data }) => this.setState(data));
-        this.Loading.hide();
+        api.fetchRandomCats().then(({ data }) => {
+          this.setState(data);
+          this.Loading.hide();
+        });
       },
     });
 
