@@ -18,10 +18,16 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: (keyword) => {
+        // 로딩 show
+        this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        // 로딩 hide
+        this.Loading.hide();
       },
       onRandomSearch: () => {
+        this.Loading.show();
         api.fetchRandomCats().then(({ data }) => this.setState(data));
+        this.Loading.hide();
       },
     });
 
