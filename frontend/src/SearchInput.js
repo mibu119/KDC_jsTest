@@ -12,9 +12,17 @@ class SearchInput {
     $wrapper.appendChild($searchInput);
     $target.appendChild($wrapper);
 
-    $searchInput.addEventListener("keyup", (e) => {
-      if (e.keyCode === 13) {
+    $searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
         onSearch(e.target.value);
+        // 최근 키워드 저장
+        let keywordHistory =
+          localStorage.getItem("keywordHistory") === null
+            ? []
+            : localStorage.getItem("keywordHistory").split(",");
+        keywordHistory.unshift(e.target.value);
+        keywordHistory = keywordHistory.slice(0, 5);
+        localStorage.setItem("keywordHistory", keywordHistory.join(","));
       }
     });
 
@@ -30,7 +38,10 @@ class SearchInput {
 
     $wrapper.appendChild($randomButton);
 
-    // console.log("SearchInput created.", this);
+    this.KeywordHistory = new KeywordHistory({
+      $target,
+      onSearch,
+    });
   }
   render() {}
 }
