@@ -16,13 +16,7 @@ class SearchInput {
       if (e.key === "Enter") {
         onSearch(e.target.value);
         // 최근 키워드 저장
-        let keywordHistory =
-          localStorage.getItem("keywordHistory") === null
-            ? []
-            : localStorage.getItem("keywordHistory").split(",");
-        keywordHistory.unshift(e.target.value);
-        keywordHistory = keywordHistory.slice(0, 5);
-        localStorage.setItem("keywordHistory", keywordHistory.join(","));
+        this.KeywordHistory.addKeyword(e.target.value);
       }
     });
 
