@@ -3,7 +3,7 @@ class SearchResult {
   data = null;
   onClick = null;
 
-  constructor({ $target, initialData, onClick }) {
+  constructor({ $target, initialData, onClick, onNextPage }) {
     const $wrapper = document.createElement("section");
     this.$searchResult = document.createElement("ul");
     this.$searchResult.className = "SearchResult";
@@ -43,7 +43,7 @@ class SearchResult {
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
-        (cat) => `
+        (cat, index) => `
           <li class="item" data-index=${index}>
             <img src="https://via.placeholder.com/200x300" data-src=${cat.url} alt=${cat.name} />
           </li>

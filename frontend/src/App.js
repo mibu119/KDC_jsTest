@@ -46,6 +46,24 @@ class App {
           cat,
         });
       },
+      onNextPage: () => {
+        this.Loading.show();
+        const keywordHistory =
+          localStorage.getItem("keywordHistory") === null
+            ? []
+            : localStorage.getItem("keywordHistory").split(",");
+
+        const lastKeyword = keywordHistory[0];
+        const page = this.page + 1;
+        api.fetchCatsPage(lastKeyword, page).then(({ data }) => {
+          let newData = this.data.concat(data);
+          this.setState({
+            items: newData,
+            page: page,
+          });
+          this.Loading.hide();
+        });
+      },
     });
 
     this.imageInfo = new ImageInfo({
