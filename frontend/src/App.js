@@ -9,7 +9,11 @@ import api from "./api.js";
 
 class App {
   $target = null;
-  data = [];
+  DEFAULT_PAGE = 1;
+  data = {
+    items: [],
+    page: this.DEFAULT_PAGE,
+  };
 
   constructor($target) {
     this.$target = $target;
@@ -28,7 +32,10 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data ? data : []);
+          this.setState({
+            items: data ? data : [],
+            page: this.DEFAULT_PAGE,
+          });
           this.Loading.hide();
           // 로컬에 저장
           this.saveResult(data);
@@ -38,7 +45,10 @@ class App {
       onRandomSearch: () => {
         this.Loading.show();
         api.fetchRandomCats().then(({ data }) => {
-          this.setState(data);
+          this.setState({
+            items: data ? data : [],
+            page: this.DEFAULT_PAGE,
+          });
           this.Loading.hide();
         });
       },
@@ -46,7 +56,7 @@ class App {
 
     this.searchResult = new SearchResult({
       $target,
-      initialData: this.data,
+      initialData: this.data.items,
       onClick: (cat) => {
         this.imageInfo.showDetail({
           visible: true,
@@ -86,7 +96,7 @@ class App {
 
   setState(nextData) {
     this.data = nextData;
-    this.searchResult.setState(nextData);
+    this.searchResult.setState(nextData.items);
   }
 
   saveResult(result) {
@@ -99,7 +109,10 @@ class App {
         ? []
         : JSON.parse(localStorage.getItem("lastResult"));
 
-    this.setState(lastResult);
+    this.setState({
+      item: lastResult,
+      page: this.DEFAULT_PAGE,
+    });
   }
 }
 

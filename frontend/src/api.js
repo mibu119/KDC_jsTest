@@ -1,4 +1,6 @@
-const API_ENDPOINT = "http://localhost:4001";
+import config from "./config.js";
+
+const { API_ENDPOINT } = config;
 
 const REQUEST_ERROR = {
   500: { msg: "요청실패" },
