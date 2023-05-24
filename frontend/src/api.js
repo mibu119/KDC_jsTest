@@ -37,3 +37,5 @@ const api = {
     return request(`${API_ENDPOINT}/api/cats/${id}`);
   },
 };
+
+export default api;

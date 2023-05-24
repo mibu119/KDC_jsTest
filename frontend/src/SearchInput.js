@@ -1,5 +1,7 @@
 const TEMPLATE = '<input type="text">';
 
+import KeywordHistory from "./KeywordHistory.js";
+
 class SearchInput {
   constructor({ $target, onSearch, onRandomSearch }) {
     const $wrapper = document.createElement("section");
@@ -39,3 +41,5 @@ class SearchInput {
   }
   render() {}
 }
+
+export default SearchInput;
