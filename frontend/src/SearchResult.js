@@ -24,16 +24,15 @@ class SearchResult {
 
   listObserver = new IntersectionObserver((items, observer) => {
     items.forEach((item) => {
+      // 아이템이 화면에 보일 때
       if (item.isIntersecting) {
         // 이미지를 로드한다. lazyLoad
         item.target.querySelector("img").src =
           item.target.querySelector("img").dataset.src;
-        // 아이템이 화면에 보일 때
-        this.data.length;
-        let dataIndex = Number(item.target.dataset.index);
         // 마지막 요소를 찾아낸다
+        let dataIndex = Number(item.target.dataset.index);
         // 마지막 요소라면? nextPage 호출
-        if (dataIndex === this.data.length) {
+        if (dataIndex + 1 === this.data.length) {
           this.onNextPage();
         }
       }
