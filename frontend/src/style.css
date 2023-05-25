@@ -89,6 +89,12 @@ body * {
   font-size: 40px;
 }
 
+.Empty {
+  font-size: 30px;
+  text-align: center;
+  padding: 100px 0;
+}
+
 .ImageInfo {
   position: fixed;
   left: 0;

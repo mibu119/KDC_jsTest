@@ -33,7 +33,7 @@ class App {
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
           this.setState({
-            items: data ? data : [],
+            items: data,
             page: this.DEFAULT_PAGE,
           });
           this.Loading.hide();
@@ -46,7 +46,7 @@ class App {
         this.Loading.show();
         api.fetchRandomCats().then(({ data }) => {
           this.setState({
-            items: data ? data : [],
+            items: data,
             page: this.DEFAULT_PAGE,
           });
           this.Loading.hide();
@@ -71,9 +71,9 @@ class App {
             : localStorage.getItem("keywordHistory").split(",");
 
         const lastKeyword = keywordHistory[0];
-        const page = this.page + 1;
+        const page = this.data.page + 1;
         api.fetchCatsPage(lastKeyword, page).then(({ data }) => {
-          let newData = this.data.concat(data);
+          let newData = this.data.items.concat(data);
           this.setState({
             items: newData,
             page: page,
